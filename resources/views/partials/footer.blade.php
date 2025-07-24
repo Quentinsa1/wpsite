@@ -22,10 +22,10 @@
                         <h3 class="widget-title">Liens rapides</h3>
                         <ul class="footer-links">
                             <li><a href="{{ route('website.index')}}">Accueil</a></li>
-                            <li><a href="#">À propos</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Actualités</a></li>
-                            <li><a href="#">Blog</a></li>
+                            <li><a href="{{ route('website.about') }}">À propos</a></li>
+                            <li><a href="{{ route('website.services.index') }}">Services</a></li>
+                            <li><a href="{{ route('website.actualites.index') }}">Actualités</a></li>
+                            <li><a href="{{ route('website.blogs.index') }}">Blog</a></li>
                             <li><a href="{{ route('website.contact')}}">Contact</a></li>
                         </ul>
                     </div>
