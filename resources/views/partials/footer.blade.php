@@ -21,12 +21,12 @@
                     <div class="footer-widget">
                         <h3 class="widget-title">Liens rapides</h3>
                         <ul class="footer-links">
-                            <li><a href="#">Accueil</a></li>
+                            <li><a href="{{ route('website.index')}}">Accueil</a></li>
                             <li><a href="#">À propos</a></li>
                             <li><a href="#">Services</a></li>
                             <li><a href="#">Actualités</a></li>
                             <li><a href="#">Blog</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="{{ route('website.contact')}}">Contact</a></li>
                         </ul>
                     </div>
                 </div>

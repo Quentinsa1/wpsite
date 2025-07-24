@@ -9,16 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
             $table->text('description');
-            $table->string('icone')->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->string('icon')->nullable();
+            $table->string('categorie')->nullable();
             $table->timestamps();
         });
+        
     }
 
     /**

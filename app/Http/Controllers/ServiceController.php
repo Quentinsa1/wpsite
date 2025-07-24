@@ -4,71 +4,44 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+   use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
-    // Frontend - Liste des services
-    public function index()
-    {
-        $services = Service::where('is_active', true)->get();
-        return view('website.services.index', compact('services'));
-    }
-
-    // Admin - Liste des services
-    public function adminIndex()
-    {
-        $services = Service::latest()->paginate(10);
-        return view('admin.services.index', compact('services'));
-    }
-
     // Formulaire de création
     public function create()
     {
         return view('admin.services.create');
     }
 
-    // Enregistrement d'un nouveau service
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'titre' => 'required|string|max:255',
-            'description' => 'required|string',
-            'icone' => 'nullable|string|max:50',
-            'is_active' => 'boolean'
-        ]);
 
-        Service::create($validated);
+public function store(Request $request)
+{
+    $request->validate([
+        'titre' => 'required|string|max:255',
+        'description' => 'required|string',
+        'categorie' => 'nullable|string|max:255',
+        'icon' => 'nullable|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+    ]);
 
-        return redirect()->route('admin.services.index')
-                         ->with('success', 'Service créé avec succès');
+    $service = new Service();
+    $service->titre = $request->titre;
+    $service->description = $request->description;
+    $service->categorie = $request->categorie;
+
+    if ($request->hasFile('icon')) {
+        $iconPath = $request->file('icon')->store('services/icons', 'public');
+        $service->icon = $iconPath;
     }
 
-    // Formulaire d'édition
-    public function edit(Service $service)
-    {
-        return view('admin.services.edit', compact('service'));
-    }
+    $service->save();
 
-    // Mise à jour d'un service
-    public function update(Request $request, Service $service)
-    {
-        $validated = $request->validate([
-            'titre' => 'required|string|max:255',
-            'description' => 'required|string',
-            'icone' => 'nullable|string|max:50',
-            'is_active' => 'boolean'
-        ]);
+    return redirect()->route('admin.services.index')->with('success', 'Service créé avec succès.');
+}
+public function index()
+{
+    $services = Service::all();
+    return view('admin.services.index', compact('services'));
+}
 
-        $service->update($validated);
-
-        return redirect()->route('admin.services.index')
-                         ->with('success', 'Service mis à jour avec succès');
-    }
-
-    // Suppression d'un service
-    public function destroy(Service $service)
-    {
-        $service->delete();
-        return back()->with('success', 'Service supprimé avec succès');
-    }
 }

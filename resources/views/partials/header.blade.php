@@ -16,7 +16,7 @@
     <div class="container">
         <a class="navbar-brand" href="{{ route('website.index') }}">
 <!--                 <span class="logo-text">WP</span>
--->                <span style="width: 180px; height: 80px;"><img src="wplogo.png" alt=""></span>
+-->                <span style="width: 180px; height: 80px;"><img src="wplogosbg.png" alt=""></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

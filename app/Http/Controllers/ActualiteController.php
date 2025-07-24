@@ -2,63 +2,49 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actualite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ActualiteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view('website.actualites.index');
+        $actualites = Actualite::latest()->paginate(6);
+        return view('admin.actualites.index', compact('actualites'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin.actualites.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'titre' => 'required|string|max:255',
+            'categorie' => 'required|string|max:100',
+            'contenu' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'date' => 'required|date',
+        ]);
+
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('actualites', 'public');
+        }
+
+        Actualite::create($data);
+
+        return redirect()->route('admin.actualites.index')->with('success', 'Actualité enregistrée avec succès.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $actualite = Actualite::findOrFail($id);
+        return view('website.actualites.show', compact('actualite'));
     }
 }
+
+

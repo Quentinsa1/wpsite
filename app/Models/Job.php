@@ -5,14 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class Job extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'titre',
-        'description',
-        'icon',
-        'categorie',
+    'title',
+    'location',
+    'type',
+    'description',
+    'deadline',
+    'skills',
+];
+ protected $casts = [
+        'skills' => 'array',
     ];
 }

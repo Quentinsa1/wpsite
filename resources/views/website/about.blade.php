@@ -1,5 +1,153 @@
 @extends('partials.templates')
 @section('content')
+<style>
+        :root {
+            --primary-color: #1a56db;
+            --secondary-color: #0e2a53;
+            --accent-color:rgb(66, 53, 49);
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        /* Section Partenaires */
+        .partners-section {
+            background-color: #f8fafc;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            margin-bottom: 50px;
+        }
+        
+        .section-subtitle {
+            display: block;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 15px 0;
+        }
+        
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .partners-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+        
+        .partner-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        
+        .partner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .partner-logo {
+            max-height: 120px;
+            max-width: 100%;
+            margin-bottom: 20px;
+            object-fit: contain;
+        }
+        
+        .partner-info {
+            width: 100%;
+        }
+        
+        .partner-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+        }
+        
+        .partner-desc {
+            color: #555;
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .partners-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .partner-card {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+        
+        /* Design elements */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%230e2a53" stroke-width="0.5" opacity="0.05"/></svg>');
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .section-header {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
   <!-- Hero Section -->
   <section class="about-hero-section">
     <div class="container">
@@ -277,88 +425,35 @@
 
 <!-- Partners Section -->
 <section class="partners-section section-padding">
-    <!-- <div class="container">
-        <div class="section-header text-center" data-aos="fade-up">
-            <span class="section-subtitle">Nos alliances stratégiques</span>
-            <h2 class="section-title">Partenaires fondateurs</h2>
-            <div class="section-divider mx-auto"></div>
-        </div>
-
-        <div class="partners-slider" data-aos="fade-up">
-            <div class="partner-slide">
-                <div class="partner-card">
-                    <img src="https://via.placeholder.com/180x80?text=FinTech+Partners" alt="FinTech Partners" class="partner-logo">
-                </div>
+        <div class="bg-pattern"></div>
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <span class="section-subtitle">Nos alliances stratégiques</span>
+                <h2 class="section-title">Partenaires</h2>
+                <div class="section-divider mx-auto"></div>
             </div>
 
-            <div class="partner-slide">
-                <div class="partner-card">
-                    <img src="https://via.placeholder.com/180x80?text=EdTech+Africa" alt="EdTech Africa" class="partner-logo">
-                </div>
-            </div>
-
-            <div class="partner-slide">
-                <div class="partner-card">
-                    <img src="https://via.placeholder.com/180x80?text=Innov+Consulting" alt="Innov Consulting" class="partner-logo">
-                </div>
-            </div>
-
-            <div class="partner-slide">
-                <div class="partner-card">
-                    <img src="https://via.placeholder.com/180x80?text=Digital+Academy" alt="Digital Academy" class="partner-logo">
-                </div>
-            </div>
-
-            <div class="partner-slide">
-                <div class="partner-card">
-                    <img src="https://via.placeholder.com/180x80?text=AgriTech+Group" alt="AgriTech Group" class="partner-logo">
-                </div>
-            </div>
-
-            <div class="partner-slide">
-                <div class="partner-card">
-                    <img src="https://via.placeholder.com/180x80?text=Startup+Fund" alt="Startup Fund" class="partner-logo">
-                </div>
-            </div>
-        </div>
-    </div> -->
-</section>
-<!-- Partners Section -->
-<section class="partners-section section-padding">
-    <div class="container">
-        <div class="section-header text-center" data-aos="fade-up">
-            <span class="section-subtitle">Nos alliances stratégiques</span>
-            <h2 class="section-title">Partenaires</h2>
-            <div class="section-divider mx-auto"></div>
-        </div>
-
-        <div class="partners-slider" data-aos="fade-up">
-            <!-- EIGB -->
-            <div class="partner-slide">
-                <div class="partner-card">
-                    <img src="https://via.placeholder.com/180x80?text=EIGB+Logo" alt="EIGB - École Internationale de Gestion du Bénin" class="partner-logo">
-                    <div class="partner-info mt-3">
+            <div class="partners-container" data-aos="fade-up" data-aos-delay="100">
+                <!-- EIGB -->
+                <div class="partner-card" data-aos="fade-right" data-aos-delay="200">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL5EVPWY9szhgx0yqhJ4EoTxf5I9rRu8jS9A&s" alt="EIGB - École Internationale de Gestion du Bénin" class="partner-logo">
+                    <div class="partner-info">
                         <h4 class="partner-name">EIGB</h4>
-                        <p class="partner-desc mb-0">École Internationale de Gestion du Bénin</p>
+                        <p class="partner-desc">École Internationale de Gestion du Bénin</p>
                     </div>
                 </div>
-            </div>
 
-            <!-- ESDAM -->
-            <div class="partner-slide">
-                <div class="partner-card">
-                    <img src="https://via.placeholder.com/180x80?text=ESDAM+Logo" alt="ESDAM - École Supérieure de Design et des Arts Modernes" class="partner-logo">
-                    <div class="partner-info mt-3">
+                <!-- ESDAM -->
+                <div class="partner-card" data-aos="fade-left" data-aos-delay="300">
+                    <img src="https://esdam.bj/images/logo-esdam.png" alt="ESDAM - École Supérieure de Design et des Arts Modernes" class="partner-logo">
+                    <div class="partner-info">
                         <h4 class="partner-name">ESDAM</h4>
-                        <p class="partner-desc mb-0">École Supérieure de Design et des Arts Modernes</p>
+                        <p class="partner-desc">École Supérieure de Design et des Arts Modernes</p>
                     </div>
                 </div>
             </div>
-
-            <!-- Ajoutez d'autres partenaires ici si nécessaire -->
         </div>
-    </div>
-</section>
+    </section>
 <!-- CTA Section -->
 <section class="about-cta-section section-padding bg-primary text-white">
     <div class="container">
@@ -368,11 +463,22 @@
                 <p class="cta-text">Découvrez comment WorldPerformance peut accélérer votre transformation avec des solutions innovantes.</p>
             </div>
             <div class="col-lg-4 text-lg-end" data-aos="fade-left">
-                <a href="contact.html" class="btn btn-light me-2">Nous contacter</a>
-                <a href="services.html" class="btn btn-outline-light">Découvrir nos solutions</a>
+                <a href="{{route('website.contact')}}" class="btn btn-light me-2">Nous contacter</a>
+                <a href="{{route('website.contact')}}" class="btn btn-outline-light">Découvrir nos solutions</a>
             </div>
         </div>
     </div>
 </section>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialiser les animations
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                once: true,
+                easing: 'ease-out'
+            });
+        });
+    </script>
 @endsection

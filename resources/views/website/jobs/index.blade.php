@@ -108,111 +108,42 @@
                 <p class="section-description mx-auto mt-3">Découvrez les postes actuellement disponibles au sein de notre cabinet.</p>
             </div>
 
-            <div class="row g-4">
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="job-card">
-                        <div class="job-header">
-                            <h3 class="job-title">Consultant Senior en Gestion Financière</h3>
-                            <div class="job-meta">
-                                <span class="job-location"><i class="fas fa-map-marker-alt"></i> Cotonou, Bénin</span>
-                                <span class="job-type"><i class="fas fa-briefcase"></i> CDI</span>
-                            </div>
-                        </div>
-                        <div class="job-body">
-                            <p class="job-description">Nous recherchons un consultant expérimenté pour accompagner nos clients dans l'optimisation de leur gestion financière et la mise en place de tableaux de bord performants.</p>
-                            <div class="job-skills">
-                                <span class="skill-tag">Finance</span>
-                                <span class="skill-tag">Analyse</span>
-                                <span class="skill-tag">Contrôle de gestion</span>
-                            </div>
-                        </div>
-                        <div class="job-footer">
-                            <div class="job-deadline">
-                                <i class="far fa-clock"></i> Date limite : 15/10/2023
-                            </div>
-                            <a href="job-detail.html" class="btn btn-primary">Postuler</a>
-                        </div>
+          <div class="row g-4">
+    @foreach ($jobs as $index => $job)
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="{{ ($index + 1) * 100 }}">
+            <div class="job-card">
+                <div class="job-header">
+                    <h3 class="job-title">{{ $job->title }}</h3>
+                    <div class="job-meta">
+                        <span class="job-location">
+                            <i class="fas fa-map-marker-alt"></i> {{ $job->location }}
+                        </span>
+                        <span class="job-type">
+                            <i class="fas fa-briefcase"></i> {{ $job->type }}
+                        </span>
                     </div>
                 </div>
-
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="job-card">
-                        <div class="job-header">
-                            <h3 class="job-title">Formateur en Développement Web</h3>
-                            <div class="job-meta">
-                                <span class="job-location"><i class="fas fa-map-marker-alt"></i> Lomé, Togo</span>
-                                <span class="job-type"><i class="fas fa-briefcase"></i> CDD</span>
-                            </div>
-                        </div>
-                        <div class="job-body">
-                            <p class="job-description">Pour notre centre de formation WP-Academy, nous cherchons un formateur expérimenté en développement web (HTML, CSS, JavaScript, React) pour animer nos sessions de formation.</p>
-                            <div class="job-skills">
-                                <span class="skill-tag">Développement</span>
-                                <span class="skill-tag">Pédagogie</span>
-                                <span class="skill-tag">JavaScript</span>
-                            </div>
-                        </div>
-                        <div class="job-footer">
-                            <div class="job-deadline">
-                                <i class="far fa-clock"></i> Date limite : 30/09/2023
-                            </div>
-                            <a href="job-detail.html" class="btn btn-primary">Postuler</a>
-                        </div>
+                <div class="job-body">
+                    <p class="job-description">
+                        {{ \Illuminate\Support\Str::limit($job->description, 160) }}
+                    </p>
+                    <div class="job-skills">
+                        @foreach (explode(',', $job->skills) as $skill)
+                            <span class="skill-tag">{{ trim($skill) }}</span>
+                        @endforeach
                     </div>
                 </div>
-
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="job-card">
-                        <div class="job-header">
-                            <h3 class="job-title">Chargé de Recrutement</h3>
-                            <div class="job-meta">
-                                <span class="job-location"><i class="fas fa-map-marker-alt"></i> Abidjan, Côte d'Ivoire</span>
-                                <span class="job-type"><i class="fas fa-briefcase"></i> CDI</span>
-                            </div>
-                        </div>
-                        <div class="job-body">
-                            <p class="job-description">Pour soutenir notre croissance, nous recrutons un chargé de recrutement pour gérer le processus de sélection de nos futurs collaborateurs dans toute la sous-région.</p>
-                            <div class="job-skills">
-                                <span class="skill-tag">RH</span>
-                                <span class="skill-tag">Recrutement</span>
-                                <span class="skill-tag">Entretien</span>
-                            </div>
-                        </div>
-                        <div class="job-footer">
-                            <div class="job-deadline">
-                                <i class="far fa-clock"></i> Date limite : 20/10/2023
-                            </div>
-                            <a href="job-detail.html" class="btn btn-primary">Postuler</a>
-                        </div>
+                <div class="job-footer">
+                    <div class="job-deadline">
+                        <i class="far fa-clock"></i> Date limite : {{ \Carbon\Carbon::parse($job->deadline)->format('d/m/Y') }}
                     </div>
-                </div>
-
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="job-card">
-                        <div class="job-header">
-                            <h3 class="job-title">Stagiaire en Marketing Digital</h3>
-                            <div class="job-meta">
-                                <span class="job-location"><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</span>
-                                <span class="job-type"><i class="fas fa-briefcase"></i> Stage</span>
-                            </div>
-                        </div>
-                        <div class="job-body">
-                            <p class="job-description">Nous offrons une opportunité de stage pour un étudiant en marketing souhaitant se spécialiser dans le digital (SEO, réseaux sociaux, content marketing).</p>
-                            <div class="job-skills">
-                                <span class="skill-tag">Marketing</span>
-                                <span class="skill-tag">Digital</span>
-                                <span class="skill-tag">Réseaux sociaux</span>
-                            </div>
-                        </div>
-                        <div class="job-footer">
-                            <div class="job-deadline">
-                                <i class="far fa-clock"></i> Date limite : 10/10/2023
-                            </div>
-                            <a href="job-detail.html" class="btn btn-primary">Postuler</a>
-                        </div>
-                    </div>
+                    <a href="#" class="btn btn-primary">Postuler</a>
                 </div>
             </div>
+        </div>
+    @endforeach
+</div>
+
 
             <div class="text-center mt-5" data-aos="fade-up">
                 <a href="#" class="btn btn-outline-primary">Voir toutes nos offres</a>
@@ -361,7 +292,7 @@
     </section>
 
     <!-- Spontaneous Application -->
-    <section class="spontaneous-section section-padding bg-primary text-white">
+   <!--  <section class="spontaneous-section section-padding bg-primary text-white">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-8 mb-4 mb-lg-0" data-aos="fade-right">
@@ -373,7 +304,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
 <!-- Recruiter Modal - Chic Version -->
 <div class="modal fade" id="recruiterModal" tabindex="-1" aria-labelledby="recruiterModalLabel" aria-hidden="true">

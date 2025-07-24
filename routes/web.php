@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,17 @@ Route::get('/', [WebsiteController::class, 'index'])->name('website.index');
 
 // Pages publiques du site
 Route::get('/a-propos', [WebsiteController::class, 'about'])->name('website.about');
-Route::get('/services', [ServiceController::class, 'index'])->name('website.services.index');
-Route::get('/actualites', [ActualiteController::class, 'index'])->name('website.actualites.index');
-Route::get('/blog', [BlogController::class, 'index'])->name('website.blogs.index');
-Route::get('/emplois', [JobController::class, 'index'])->name('website.jobs.index');
+Route::get('/actualites', [WebsiteController::class, 'actualiteindex'])->name('website.actualites.index');
+Route::get('/blog', [WebsiteController::class, 'postindex'])->name('website.blogs.index');
+Route::get('/blog/{post}', [WebsiteController::class, 'show'])->name('website.blogs.show');
+
+//route Jobs
+Route::get('/services', [WebsiteController::class, 'serviceindex'])->name('website.services.index');
+
+//route Jobs
+Route::get('/emplois', [WebsiteController::class, 'jobindex'])->name('website.jobs.index');
+
+// route 
 Route::get('/contact', [WebsiteController::class, 'contact'])->name('website.contact');
 
 // Espace sécurisé
@@ -33,10 +41,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Routes resource pour l'administration avec nommage
     Route::name('admin.')->prefix('admin')->group(function () {
+       
         Route::resource('services', ServiceController::class)->except(['show']);
-        Route::resource('actualites', ActualiteController::class)->except(['show']);
+        Route::resource('actualites', ActualiteController::class);
         Route::resource('blogs', BlogController::class)->except(['show']);
         Route::resource('emplois', JobController::class)->except(['show']);
+
+        Route::resource('posts', PostController::class);
+
+
     });
 
     // Gestion du profil utilisateur
