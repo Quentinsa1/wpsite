@@ -46,7 +46,7 @@
                 </li>
             </ul>
             <div class="ms-lg-3 mt-3 mt-lg-0">
-                <a href="#" class="btn btn-outline-light btn-sm">Espace Client</a>
+                <a href="#" class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">Espace Client</a>
             </div>
         </div>
     </div>
